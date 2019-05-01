@@ -1,33 +1,28 @@
-/**
- * @format
- * @flow
- */
+/** @format */
 
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, StatusBar } from 'react-native';
 
 const { RNColorManager } = NativeModules;
+const isAndroid = Platform.OS === 'android';
+const isIOS = Platform.OS === 'ios';
+const hasModule = !!RNColorManager;
+const hasStatusBar = !!StatusBar;
 
 export const ColorManager = {
-  setStatusBarColor(
-    color: string,
-    animated?: boolean = false,
-    duration?: number = 300
-  ): void {
-    if (Platform.OS === 'android' && RNColorManager) {
+  setStatusBarColor(color, animated = false, duration = 300) {
+    if (isAndroid && hasModule) {
       RNColorManager.setStatusBarColor(color, animated, duration);
+    } else if (isIOS && hasStatusBar) {
+      StatusBar.setBackgroundColor(color, animated);
     }
   },
-  setNavigationBarColor(
-    color: string,
-    animated?: boolean = false,
-    duration?: number = 300
-  ): void {
-    if (Platform.OS === 'android' && RNColorManager) {
+  setNavigationBarColor(color, animated = false, duration = 300) {
+    if (isAndroid && hasModule) {
       RNColorManager.setNavigationBarColor(color, animated, duration);
     }
   },
-  setRecentColor(color: string): void {
-    if (Platform.OS === 'android' && RNColorManager) {
+  setRecentColor(color) {
+    if (isAndroid && hasModule) {
       RNColorManager.setRecentColor(color);
     }
   }
