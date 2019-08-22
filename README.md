@@ -78,7 +78,7 @@ The `react-native-color-manager` library includes the `ColorManager` object inte
 
 ##### Method that reports custom theme color.
 
-##### The `getThemeMode` method accept next value:
+##### The `getThemeMode` method returns next value:
 
 | Type   | Value         |
 | ------ | ------------- |
