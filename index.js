@@ -28,6 +28,12 @@ export const ColorManager = {
       RNColorManager.setRecentColor(color);
     }
   },
+
+  isNightMode() {
+    if (isAndroid && hasModule) {
+      return RNColorManager.isNightMode();
+    }
+  },
 };
 
 export default ColorManager;
