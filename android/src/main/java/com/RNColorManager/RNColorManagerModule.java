@@ -13,7 +13,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.view.WindowManager;
 
 import com.facebook.react.bridge.GuardedRunnable;
@@ -156,7 +155,7 @@ public class RNColorManagerModule extends ReactContextBaseJavaModule {
             case UiModeManager.MODE_NIGHT_YES:
                 return "YES";
             default:
-                return null;
+                return "NO";
         }
     }
 }
