@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager.TaskDescription;
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.res.Resources;
@@ -12,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.view.WindowManager;
 
 import com.facebook.react.bridge.GuardedRunnable;
@@ -139,6 +141,22 @@ public class RNColorManagerModule extends ReactContextBaseJavaModule {
 
             TaskDescription taskDescription = new TaskDescription(appName, appIcon, color);
             ((Activity) activity).setTaskDescription(taskDescription);
+        }
+    }
+
+    @ReactMethod
+    public String isNightMode() {
+        final Context context = getReactApplicationContext();
+        UiModeManager manager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+        switch (manager.getNightMode()) {
+            case UiModeManager.MODE_NIGHT_AUTO:
+                return "AUTO";
+            case UiModeManager.MODE_NIGHT_NO:
+                return "NO";
+            case UiModeManager.MODE_NIGHT_YES:
+                return "YES";
+            default:
+                return null;
         }
     }
 }
