@@ -74,16 +74,32 @@ The `react-native-color-manager` library includes the `ColorManager` object inte
 
 ---
 
+## The `getThemeMode` method
+
+##### Method that reports custom theme color.
+
+##### The `getThemeMode` method accept next value:
+
+| Type   | Value         |
+| ------ | ------------- |
+| string | light / dark  |
+
+---
+
 # Examples
 
 ```js
-  import React, { Component } from 'react';
+  import React, { useEffect } from 'react';
   import { ColorManager } from 'react-native-color-manager';
 
-  class App extends Component {
 
-    componentDidMount() {
+  const App = () => {
+
+    useEffect(() => {
       const needAnimation = true;
+      const themeMode = ColorManager.getThemeMode();
+
+      console.log(themeMode); // light or dark
 
       if (needAnimation) {
         ColorManager.setStatusBarColor('#2196F3', true, 300);
@@ -94,11 +110,9 @@ The `react-native-color-manager` library includes the `ColorManager` object inte
         ColorManager.setNavigationBarColor('#2196F3');
         ColorManager.setRecentColor('#2196F3');
       }
-    }
+    }, [])
 
-    render() {
-      return null;
-    }
+    return null;
   }
 ```
 
