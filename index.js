@@ -29,10 +29,13 @@ export const ColorManager = {
     }
   },
 
-  isNightMode() {
+  getThemeMode() {
     if (isAndroid && hasModule) {
-      return RNColorManager.isNightMode();
+      const mode = RNColorManager.isNightMode();
+      return mode === 'no' || mode === 'auto' ? 'light' : 'dark';
     }
+
+    return 'light';
   },
 };
 

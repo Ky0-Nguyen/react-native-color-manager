@@ -143,19 +143,20 @@ public class RNColorManagerModule extends ReactContextBaseJavaModule {
         }
     }
 
-    @ReactMethod
+    @ReactMethod(isBlockingSynchronousMethod = true)
     public String isNightMode() {
         final Context context = getReactApplicationContext();
         UiModeManager manager = (UiModeManager) context.getSystemService(Context.UI_MODE_SERVICE);
+
         switch (manager.getNightMode()) {
             case UiModeManager.MODE_NIGHT_AUTO:
-                return "AUTO";
+                return "auto";
             case UiModeManager.MODE_NIGHT_NO:
-                return "NO";
+                return "no";
             case UiModeManager.MODE_NIGHT_YES:
-                return "YES";
+                return "yes";
             default:
-                return "NO";
+                return "no";
         }
     }
 }
