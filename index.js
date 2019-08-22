@@ -16,16 +16,18 @@ export const ColorManager = {
       StatusBar.setBackgroundColor(color, animated);
     }
   },
+
   setNavigationBarColor(color, animated = false, duration = 300) {
     if (isAndroid && hasModule) {
       RNColorManager.setNavigationBarColor(color, animated, duration);
     }
   },
+
   setRecentColor(color) {
     if (isAndroid && hasModule) {
       RNColorManager.setRecentColor(color);
     }
-  }
+  },
 };
 
 export default ColorManager;
